@@ -8,16 +8,24 @@ class node:
 '''
 class Solution:
     #  Should return data of middle node. If linked list is empty, then  -1
+    def length(self, head):
+        count = 0
+        if head is None:
+            return count
+        while head is not None:
+            head = head.next
+            count += 1
+        return count
     def findMid(self, head):
         # Code here
         # return the value stored in the middle node
-        fast = head
-        slow = head
-        while fast!=None and fast.next!=None:
-            slow = slow.next
-            fast = fast.next.next
-        return slow.data    
-
+        l = self.length(head)
+        if l==0:
+            return -1
+        mid = l // 2
+        for i in range(mid):  
+            head = head.next
+        return head.data
 #{ 
  # Driver Code Starts
 # Initial Template for Python3
