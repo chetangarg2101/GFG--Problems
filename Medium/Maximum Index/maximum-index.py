@@ -1,44 +1,38 @@
 #User function Template for python3
-
 class Solution:
-    # Complete this function
-    # Function to find the maximum index difference.
-    def maxIndexDiff(self, a, n):
-        ##Your code here
-        l_min, r_max = [a[0]] * n, [a[-1]] * n
-        for i in range(1, n):
-            l_min[i] = min(l_min[i-1], a[i])
-            r_max[-i-1] = max(r_max[-i], a[-i-1])
-        
-        l, r, ans = 0, 0, 0
-        while l < n and r < n:
-            if l_min[l] <= r_max[r]:
-                ans = max(ans, r - l)
-                r += 1
-            else:
-                l += 1
-        return ans
 
+	def maxIndexDiff(self,arr,n):
+		#code here
+		max_diff = 0
+        left_min = [0] * n
+        right_max = [0] * n
+
+        left_min[0] = arr[0]
+        for i in range(1, n):
+            left_min[i] = min(arr[i], left_min[i - 1])
+
+        right_max[n - 1] = arr[n - 1]
+        for i in range(n - 2, -1, -1):
+            right_max[i] = max(arr[i], right_max[i + 1])
+
+        i = 0
+        j = 0
+        while i < n and j < n:
+            if left_min[i] <= right_max[j]:
+                max_diff = max(max_diff, j - i)
+                j += 1
+            else:
+                i += 1
+
+        return max_diff
 #{ 
  # Driver Code Starts
-#Initial Template for Python 3
-
-import math
-
-def main():
-        T=int(input())
-        while(T>0):
-            
-            n=int(input())
-            
-            arr=[int(x) for x in input().strip().split()]
-            ob=Solution()
-            print(ob.maxIndexDiff(arr,n))
-            
-            
-            T-=1
-
-
 if __name__ == "__main__":
-    main()
+	t = int(input())
+	while(t>0):
+		num = int(input())
+		arr = [int(x) for x in input().strip().split()]
+		ob = Solution()
+		print(ob.maxIndexDiff(arr,num))
+		t-=1
 # } Driver Code Ends
