@@ -1,40 +1,52 @@
-#User function Template for python3
+
+from typing import List
+
 
 class Solution:
-
-    def findPair(self, arr, L,N):
-        #code here
+    def findPair(self, n : int, x : int, arr : List[int]) -> int:
+        # code here
         arr.sort()
-        i,j=0,1
-        n=N
- 
-
-        while j < len(arr):
-            if arr[j] - arr[i] == n:
-                return True
-            elif arr[j] - arr[i] < n:
-                j += 1
-            elif arr[j] - arr[i] > n:
-                i += 1
-                if i==j:
-                    j+=1
-        return False
+        l = 0
+        r = 1
+        
+        while l < n and r < n:
+            if l != r and arr[r] - arr[l] == x:
+                return 1
+            elif arr[r] - arr[l] < x:
+                r += 1
+            else:
+                l += 1
+        return -1        
 #{ 
  # Driver Code Starts
-#Initial Template for Python 3
+class IntArray:
 
-if __name__ == '__main__':
+    def __init__(self) -> None:
+        pass
 
+    def Input(self, n):
+        arr = [int(i) for i in input().strip().split()]  #array input
+        return arr
+
+    def Print(self, arr):
+        for i in arr:
+            print(i, end=" ")
+        print()
+
+
+if __name__ == "__main__":
     t = int(input())
-
     for _ in range(t):
-        L,N = [int(x) for x in input().split()]
-        arr = [int(x) for x in input().split()]
 
-        solObj = Solution()
+        n = int(input())
 
-        if(solObj.findPair(arr,L, N)):
-            print(1)
-        else:
-            print(-1)
+        x = int(input())
+
+        arr = IntArray().Input(n)
+
+        obj = Solution()
+        res = obj.findPair(n, x, arr)
+
+        print(res)
+
 # } Driver Code Ends
