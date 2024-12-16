@@ -1,11 +1,11 @@
 #User function Template for python3
 
+
 class Solution:
-    def kthElement(self, k, arr1, arr2):
-        return sorted(arr1+arr2)[k-1]
-        
-        
-        
+
+    def kthElement(self, a, b, k):
+        return sorted(a+b) [k-1]
+
 
 
 #{ 
@@ -23,8 +23,8 @@ def main():
         a = [int(x) for x in input().strip().split()]
         b = [int(x) for x in input().strip().split()]
         ob = Solution()
-        print(ob.kthElement(k, a, b))
-
+        print(ob.kthElement(a, b, k))
+        print("~")
         T -= 1
 
 
