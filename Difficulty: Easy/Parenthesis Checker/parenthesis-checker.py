@@ -1,22 +1,21 @@
-#User function Template for python3
 
 class Solution:
-    
-    #Function to check if brackets are balanced or not.
-    def ispar(self,x):
+    def isBalanced(self, s):
         # code here
-        stack = []
-        opening_symbols = {'(', '{', '['}
-        closing_symbols = {')': '(', '}': '{', ']': '['}
-    
-        for i in x:
-            if i in opening_symbols:
-                stack.append(i)
-            elif i in closing_symbols:
-                if not stack or stack.pop() != closing_symbols[i]:         
+        st = []
+        for c in s:
+            if c in {'(','{','['}:
+                st.append(c)
+            elif c in { ')','}',']' }:
+                if len(st) <= 0 : return False
+                if c == ')' and st[-1]!='(':
                     return False
-        
-        return not stack
+                if c == '}' and st[-1]!='{':
+                    return False
+                if c == ']' and st[-1]!='[':
+                    return False
+                st.pop()
+        return len(st)==0
 
 
 #{ 
@@ -43,14 +42,12 @@ def write():
 if __name__ == '__main__':
     test_cases = int(input())
     for cases in range(test_cases):
-        #n = int(input())
-        #n,k = map(int,imput().strip().split())
-        #a = list(map(int,input().strip().split()))
         s = str(input())
         obj = Solution()
-        if obj.ispar(s):
-            print("balanced")
+        if obj.isBalanced(s):
+            print("true")
         else:
-            print("not balanced")
+            print("false")
+        print("~")
 
 # } Driver Code Ends
